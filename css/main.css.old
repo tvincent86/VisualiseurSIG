@@ -1,0 +1,407 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+/* 
+ * Haut de page 
+ */
+/*
+#mainHeader {
+    background-color: #157FCC;
+    font: normal 11px arial,tahoma,sans-serif;
+    color: #fff;
+    padding: 5px 5px 5px 5px;
+    height: 150px;
+*/
+}
+/* 
+ * Pied de page 
+ */
+#footer {
+    background-color: #157FCC;
+    font: normal 11px arial,tahoma,sans-serif;
+    color: #fff;
+    padding: 5px 5px 5px 5px;
+    height: 20px;
+    position: absolute;
+
+}
+
+#mainFooter {
+    background-color: #157FCC;
+    font: normal 11px arial,tahoma,sans-serif;
+    color: #fff;
+    padding: 5px 5px 5px 5px;
+    height: 20px;
+}
+
+#mainFooter .version{
+    text-align: left;
+    position: absolute;
+    /*left: 5px;*/
+}
+
+#mainFooter .w3c{
+    text-align: center;
+    position: absolute;
+    left: 40%;
+    width: 165px;
+    height: 20px;
+}
+#mainFooter .w3c img{
+    width: 70px;
+    height: 16px;
+}
+#mainFooter .xiti{
+    text-align: center;
+    position: absolute;
+    right: 40%;
+    width: 65px;
+    height: 18px;
+}
+#mainFooter .copyright{
+    text-align: right;
+    position: absolute;
+    float: right;
+    right: 5px;
+}
+#mainFooter .copyright-txt{
+    text-align: right;
+    position: absolute;
+    float: right;
+    right: 90px;
+}
+/*
+ * Elements de la barre d'outil 
+ */
+.zoomfull {
+    background-image:url(../icons/icon_zoomfull.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.help {
+    background-image:url(../icons/help.png) !important;
+    height:20px !important;
+    width:20px !important;
+    cursor: help;
+}
+.print {
+    background-image:url(../icons/icon_printer.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.permalink {
+    background-image:url(../icons/icon_link.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.winPopup {
+    background: #DFEAF2;
+}
+.win-popup {
+    padding: 10px;
+/*
+    margin: 10px;
+*/
+/*
+    background-color: #DFEAF2;
+*/
+}
+.service-wms {
+    background-image:url(../icons/icon_wms.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+
+.toolbar-top {
+/*
+    background-color: #157FCC;
+*/
+	padding: 1px 0px 6px 8px;
+	background-color: #157FCC;
+	border-top-color: #157FCC;
+	border-top-width: 5px !important;
+    border-bottom-color: #157FCC;
+    border-bottom-width: 4px !important;
+}
+
+/*
+.x-grid-tree-node-expanded .x-tree-icon-parent {
+    background-image: url('../img/tree/folder-open.png');
+}
+.x-tree-icon-parent {
+    background-image: url('../img/tree/folder.png');
+*/
+}
+
+/*
+.x-accordion-item .x-accordion-hd {
+    background: none repeat scroll 0% 0% #157FCC;
+    border-top-color: #157FCC;
+    padding: 8px 10px;
+*/
+}
+.x-accordion-item .x-accordion-hd .x-panel-header-text-container {
+    background: none repeat scroll 0% 0% #157FCC;
+    color: #FFF;
+    font-weight: bold;
+    font-family: helvetica,arial,verdana,sans-serif;
+    text-transform: none;
+}
+
+
+div.olControlAttribution {
+  background-color: rgb(220,220,220);
+  background-color: rgba(55,55,55,0.2); 
+  border-top-left-radius: 5px;
+  bottom: 0;
+  color: #333;
+  max-width: 50%;
+  max-height: 50%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 3px 3px 3px 5px;
+  right: 0;
+  text-align: right;
+  text-shadow: 0 0 2px #fff;
+}
+div.olControlAttribution a,
+div.olControlAttribution a:link,
+div.olControlAttribution a:visited,
+div.olControlAttribution a:hover,
+div.olControlAttribution a:active {
+  color: darkblue;
+}
+
+div.olControlMousePosition {
+    bottom: 20px;
+    display: block;
+    position: absolute;
+    font-family: Arial;
+    font-size: smaller;
+    background-color: rgb(220,220,220);
+    background-color: rgba(55,55,55,0.2);
+    border-top-left-radius: 5px;
+    bottom: 20px;
+    color: #333;
+    max-width: 50%;
+    max-height: 50%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 3px 3px 3px 5px;
+    right: 0;
+    text-align: right;
+    text-shadow: 0 0 2px #fff;
+}
+
+.x-field-label-cell {
+	padding-left: 5px;
+	width: 75px;
+}
+
+#toolbar-bottom {
+	padding: 3px 0px 0px 1px;
+	position: absolute;
+}
+
+#toolbar-bottom-body{
+	padding-top: 3px;
+}
+
+#toolbar-bottom  table { 
+  display:inline-block;
+  vertical-align:top;
+}
+
+.TabMousePosition {  
+/*
+  margin-left: 20px;
+*/
+  width: 200px;
+}
+#MousePosition { 
+	padding: 3px 5px 3px 10px;
+	background-color: rgb(220,220,220);
+	background-color: rgba(55,55,55,0.2);
+}
+
+.zoomSelector {  
+	margin-left: 10px;
+	background-color: rgb(220,220,220);
+	background-color: rgba(55,55,55,0.2);
+}
+
+.displayProjectionCombo {  
+	margin-left: 10px;
+	background-color: rgb(220,220,220);
+	background-color: rgba(55,55,55,0.2);
+}
+
+#accordion {
+	background: none repeat scroll 0% 0% #157FCC;
+	padding: 0;
+}
+
+
+/*
+#map {
+	padding: 0 0 0 3px;
+	background-color: #157FCC;
+}
+*/
+
+/*
+.x-tree-icon-leaf {
+*/
+/*
+    background-image: url('images/tree/leaf.png');
+*/
+}
+/*
+ * Masquer la feuille devant le nom des couches
+*/
+/*
+.gx-tree-layer-icon {
+    display: none;
+*/
+/*
+}
+*/
+
+.displayProjectionCombo .x-boundlist-item {
+	font-weight: italic;
+    font-family: Arial;
+    font-size: smaller;
+}
+
+/* --- STYLES POUR IMPRESSION --- */
+
+@media print {
+
+	/* --- STYLES DE BASE --- */
+	
+	/* Page */
+	* {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font-family: sans-serif;
+	    font-size: 1em;
+	    font-weight: normal;
+	    font-style: normal;
+	    text-decoration: none;
+	}
+	html {
+	    font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
+	}
+
+	body {
+	      margin: 0;
+	      line-height: 1.4; /* À adapter au design. (4) */
+	      color: black;
+	      clear:left;
+	      background-color: pink;
+/*
+	      background-color :#fff;
+*/
+	      
+	}
+	/* Les éléments qui ne seront pas affichés  */
+
+	#footer {display: none;}
+	#accordion {display: none;}
+	
+	#ficheInfoWms {display: none;}
+/*
+	#shortcutCombo {display: none;}
+	#treePanel {display: none;}
+	div.olControlPermalink {display: none;}
+	div.olControlMousePosition{display: none;}
+	div.olControlPanZoomBar{display: none;}
+	.toolbar-top {display: none;}
+	#toolbar-bottom {display: none;}
+	#treePanel{display: none;}
+*/	
+	
+	/* Header */
+
+	#header {
+		margin :0;
+		padding: 0;
+		float: none !important;
+	}
+	#mainHeader {
+	    font: normal 1em arial,tahoma,sans-serif;
+	}
+	#mainHeader h2 {
+	    font-size: 1.6em;
+	    padding-left: 20px;
+	}
+	#mainHeader h3 {
+		font-size: 1.1em;
+	    font-style: italic;
+	    padding-left: 25px;
+	}
+	
+	
+	#map {
+		margin :0;
+		padding: 0;
+		border :none;
+		clear:none;
+		float: none !important;
+	}
+	#accordion {
+		margin :0;
+		padding: 0;
+		border :none;
+		clear:none;
+		float: none !important;
+	}
+/*
+ 	#header {
+	    width:100%;
+	    clear:none;
+	    height: 100px;
+	    position:relative;
+		left:20px;
+		top:200px;
+	}
+	#mainHeader {
+	    font: normal 1em arial,tahoma,sans-serif;
+	    padding: 0px;
+	}
+	#mainHeader h2 {
+	    font-size: 1.6em;
+	    padding-left: 20px;
+	}
+	#mainHeader h3 {
+		font-size: 1.1em;
+	    font-style: italic;
+	    padding-left: 25px;
+	}
+*/
+	
+	/* Map */
+/*
+	#map {
+		float: left;
+		clear: none;
+		width: 100%;
+		height: 100%;
+	}
+	#map-body {
+		border:0px;
+	}
+	.olMapViewport {
+		clear: none;
+		width: 100%;
+		height: 100%;
+	    border: 1px solid #fff;
+	}
+*/
+	
+
+	
+
+}

@@ -1,74 +1,222 @@
-/* --- STYLES DE BASE --- */
-
-/* Page */
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-family: sans-serif;
-    font-size: 1em;
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
-}
-html {
-    font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
-}
-body {
-      margin: 0;
-      /*padding: 1em;*/ /* Remettre à zéro si nécessaire. */
-      /*font-family: Arial, Helvetica, FreeSans, sans-serif; */
-      /*font-size: .8em;*/ /* À adapter pour la police choisie. (3) */
-      line-height: 1.4; /* À adapter au design. (4) */
-      color: black;
-      background: white;
-      /*border: 0;*/
+@page {
+	size: landscape;
+/*
+	size: A4 portrait;
+      margin-left:0cm;
+      margin-right:0cm;
+      * */
+            margin:1cm;
 }
 
+	/* --- STYLES DE BASE --- */
+	
+	/* Page */
+	* {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font-family: sans-serif;
+	    font-size: 1em;
+	    font-weight: normal;
+	    font-style: normal;
+	    text-decoration: none;
+	}
+	html {
+	    font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
+	}
 
-#header {
-    width:100%;
-}
-#map {
-    border: #157FCC;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-.titre {
-    position: relative; 
-    float: left; 
-    width: 80%;
-    height: 90px;
-    padding-top: 20px;
-    text-align: center;
-    font-family: Arial, Helvetica, FreeSans, sans-serif; 
-}
-.titre h1 {
-    font-size: 3em; 
-}
-.titre p {
-    font-size: 1.8em; 
-}
-.olControlAttribution {
-    font:11px arial,tahoma,helvetica,sans-serif;
-    float: left;
-    bottom: 5px;
-    left: 100px;
-}
-.olControlScaleLine {
-    bottom: 5px;
-    float: left;
-    left: 10px;
-}
+	body {
+	      margin: 0;
+	      line-height: 1.4; /* À adapter au design. (4) */
+	      color: black;
+	      clear:left;
+	      background-color :#fff;
+	      
+	}
+	
+		/* 
+	 * Haut de page 
+	 */
+	#mainHeader {
+		padding: 5px 5px 5px 5px;
+	    height: 100px;
+	    font: normal 11px sans-serif;
+	    color: #000;
+	}
+	#mainHeader div {
+		display:inline-block;
+		vertical-align: top;
+		float: left;
+	}
+	#mainHeader img {
+		margin: 5px;
+	}
+	#mainHeader h2 {
+		margin: 15px 0px 0px 10px;
+	    font-size: 25px;
+	    font-weight: bold;
+/*
+	    color: #fff;
+*/
+	}
+	#mainHeader h3 {
+		margin: 5px 0px 0px 200px;
+	/*
+		padding-left: 200px;
+	*/
+		font-size: 15px;
+	    font-style: italic;
+	}
 
-#footer {display: none;}
-#shortcutCombo {display: none;}
-#treePanel {display: none;}
-div.olControlPermalink {display: none;}
-div.olControlMousePosition{display: none;}
-div.olControlPanZoomBar{display: none;}
-#toolbar-top {display: none;}
-#treePanel_header {
-    font:15px arial,tahoma,helvetica,sans-serif;
-    background: #157FCC;
-}
+	
+	
+	
+	/* Les éléments qui ne seront pas affichés  */
+
+	/* Accordion */
+/*
+	#accordion {display: none;}
+*/
+	#treePanel {display: none;}
+	.x-collapsed {display: none;} 
+
+	/* Map */
+	div.olControlMousePosition{display: none;}
+	div.olControlPanZoomBar{display: none;}
+	#toolbar-top {display: none;}
+	#toolbar-bottom {display: none;}
+	/* Footer */
+	#footer {display: none;}
+	/* Divers */
+	#ficheInfoWms {display: none;}
+/*
+	#shortcutCombo {display: none;}
+	#treePanel {display: none;}
+	div.olControlPermalink {display: none;}
+	div.olControlMousePosition{display: none;}
+	div.olControlPanZoomBar{display: none;}
+	
+	#treePanel{display: none;}
+*/	
+	
+	/* Header */
+/*
+	#header {
+		margin :0;
+		padding: 0;
+		float: none !important;
+		height: 80px;
+	}
+	#mainHeader {
+	    font: normal 1em arial,tahoma,sans-serif;
+	}
+	#mainHeader h2 {
+	    font-size: 1.6em;
+	    padding-left: 20px;
+	}
+	#mainHeader h3 {
+		font-size: 1.1em;
+	    font-style: italic;
+	    padding-left: 25px;
+	}
+*/
+	
+	/* Map */
+	#map {
+		margin : 0;
+		padding: 0;
+		float: none !important;
+		display: block;
+		
+	}
+	.olMapViewport {
+		width: 100%;
+		height: 100%;
+	    border: 2px solid #000;
+	}
+	div.olControlAttribution {
+		float: left;
+		bottom: 0px;
+		right: 0px;
+		padding: 3px;
+	}
+
+	
+	/* Accordion */
+	#accordion {
+		margin-right: 5px;
+		padding: 0;
+		border: 0;
+		clear:none;
+		float: none !important;
+	}
+	#accordion-body {
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
+/*
+	#legendPanel {
+		border: 2px solid #000;
+	}
+*/
+	#legendPanel_header-body {
+		padding: 0;
+		margin: 0;
+		border: 2px double #000;
+	}
+	
+	#legendPanel-body {
+		padding: 10px;
+	}
+	
+	
+/*
+ 	#header {
+	    width:100%;
+	    clear:none;
+	    height: 100px;
+	    position:relative;
+		left:20px;
+		top:200px;
+	}
+	#mainHeader {
+	    font: normal 1em arial,tahoma,sans-serif;
+	    padding: 0px;
+	}
+	#mainHeader h2 {
+	    font-size: 1.6em;
+	    padding-left: 20px;
+	}
+	#mainHeader h3 {
+		font-size: 1.1em;
+	    font-style: italic;
+	    padding-left: 25px;
+	}
+*/
+	
+	/* Map */
+/*
+	#map {
+		float: left;
+		clear: none;
+		width: 100%;
+		height: 100%;
+	}
+	#map-body {
+		border:0px;
+	}
+	.olMapViewport {
+		clear: none;
+		width: 100%;
+		height: 100%;
+	    border: 1px solid #fff;
+	}
+*/
+	
+	.gm-style .gmnoprint, .gmnoprint {
+		    display:none  
+	}
+	
+
+

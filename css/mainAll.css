@@ -1,0 +1,541 @@
+/*
+ * Style pour tout
+ * */
+@media screen, print {
+}
+
+/*
+ * Style pour l'affichage écran
+ * */
+@media screen {
+
+	body {
+	    margin: 0px;
+	    padding: 0px;
+	    background-color: #5592A8;
+	}
+	/* 
+	 * Haut de page 
+	 */
+	#mainHeader {
+		padding: 5px 5px 5px 5px;
+	    height: 100px;
+	    background-color: #5592A8;
+	/*
+	    background-image: url(http://dev2.iaat.org/plate_forme/images/bandeau.gif);
+	*/
+	    font: normal 11px sans-serif;
+	    color: #fff;
+	}
+	#mainHeader div {
+		display:inline-block;
+		vertical-align: top;
+	}
+	#mainHeader img {
+		margin: 5px;
+	}
+	#mainHeader h2 {
+		margin: 15px 0px 0px 10px;
+	    font-size: 25px;
+	    font-weight: bold;
+	    color: #fff;
+	}
+	#mainHeader h3 {
+		margin: 5px 0px 0px 200px;
+	/*
+		padding-left: 200px;
+	*/
+		font-size: 15px;
+	    font-style: italic;
+	}
+	/* 
+	 * Pied de page 
+	 */
+	#footer {
+		padding: 5px 5px 5px 5px;
+	    height: 20px;
+	    position: absolute;
+	    background-color: #5592A8;
+	    font: normal 11px arial,tahoma,sans-serif;
+	    color: #fff;
+	}
+	#mainFooter {
+	    background-color: #5592A8;
+	    font: normal 11px arial,tahoma,sans-serif;
+	    color: #fff;
+	    padding: 5px 5px 5px 5px;
+	    height: 20px;
+	}
+	#mainFooter .version{
+	    text-align: left;
+	    position: absolute;
+	}
+	#mainFooter .w3c{
+	    text-align: center;
+	    position: absolute;
+	    left: 40%;
+	    width: 165px;
+	    height: 20px;
+	}
+	#mainFooter .w3c img{
+	    width: 70px;
+	    height: 16px;
+	}
+	#mainFooter .xiti{
+	    text-align: center;
+	    position: absolute;
+	    right: 40%;
+	    width: 65px;
+	    height: 18px;
+	}
+	#mainFooter .copyright{
+	    text-align: right;
+	    position: absolute;
+	    float: right;
+	    right: 5px;
+	}
+	#mainFooter .copyright-txt{
+	    text-align: right;
+	    position: absolute;
+	    float: right;
+	    right: 90px;
+	}
+	/*
+	 * Elements de la barre d'outil (icon)
+	 */
+	.zoomfull {
+	    background-image:url(../icons/icon_zoomfull.png) !important;
+	    height:20px !important;
+	    width:20px !important;
+	}
+	.help {
+	    background-image:url(../icons/help.png) !important;
+	    height:20px !important;
+	    width:20px !important;
+	    cursor: help;
+	}
+	.print {
+	    background-image:url(../icons/icon_printer.png) !important;
+	    height:20px !important;
+	    width:20px !important;
+	}
+	.permalink {
+	    background-image:url(../icons/icon_link.png) !important;
+	    height:20px !important;
+	    width:20px !important;
+	}
+	.serviceWms {
+	    background-image:url(../icons/icon_wms.png) !important;
+	    height:20px !important;
+	    width:20px !important;
+	}
+	
+	/* 
+	 * ??? 
+	 */
+	.winPopup {
+	    background: #DFEAF2;
+	}
+	
+	
+	#toolbar-top {
+		padding: 5px 0px 6px 1px;
+	/*
+		padding: 0px;
+	*/
+		background-color: #5592A8;
+		height: 29px;
+	/*
+		border-top-color: #005c93;
+		border-top-width: 5px !important;
+	    border-bottom-color: #005c93;
+	    border-bottom-width: 0px !important;
+	    * * */
+	}
+	
+	/*
+	.x-grid-tree-node-expanded .x-tree-icon-parent {
+	    background-image: url('../img/tree/folder-open.png');
+	}
+	.x-tree-icon-parent {
+	    background-image: url('../img/tree/folder.png');
+	*/
+	}
+	
+	/*
+	.x-accordion-item .x-accordion-hd {
+	    background: none repeat scroll 0% 0% #157FCC;
+	    border-top-color: #157FCC;
+	    padding: 8px 10px;
+	*/
+	}
+	.x-accordion-item .x-accordion-hd .x-panel-header-text-container {
+	    background: none repeat scroll 0% 0% #157FCC;
+	    color: #FFF;
+	    font-weight: bold;
+	    font-family: helvetica,arial,verdana,sans-serif;
+	    text-transform: none;
+	}
+	
+	
+	div.olControlAttribution {
+	  background-color: rgb(220,220,220);
+	  background-color: rgba(55,55,55,0.2); 
+	  border-top-left-radius: 5px;
+	  bottom: 0;
+	  color: #333;
+	  max-width: 50%;
+	  max-height: 50%;
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	  padding: 3px 3px 3px 5px;
+	  right: 0;
+	  text-align: right;
+	  text-shadow: 0 0 2px #fff;
+	}
+	div.olControlAttribution a,
+	div.olControlAttribution a:link,
+	div.olControlAttribution a:visited,
+	div.olControlAttribution a:hover,
+	div.olControlAttribution a:active {
+	  color: darkblue;
+	}
+	
+	div.olControlScaleLineTop {
+	  margin-left: 80px;
+	}
+	
+	
+	/*
+	div.olControlMousePosition {
+	    bottom: 20px;
+	    display: block;
+	    position: absolute;
+	    font-family: Arial;
+	    font-size: smaller;
+	    background-color: rgb(220,220,220);
+	    background-color: rgba(55,55,55,0.2);
+	    border-top-left-radius: 5px;
+	    bottom: 20px;
+	    color: #333;
+	    max-width: 50%;
+	    max-height: 50%;
+	    overflow-y: auto;
+	    overflow-x: hidden;
+	    padding: 3px 3px 3px 5px;
+	    right: 0;
+	    text-align: right;
+	    text-shadow: 0 0 2px #fff;
+	}
+	*/
+	
+	.x-field-label-cell {
+		padding-left: 5px;
+		width: 75px;
+	}
+	
+	#toolbar-bottom {
+	/*
+		height: 30px;
+	*/
+		padding: 3px 0 0 1px;
+	/*
+		position: absolute;
+	*/
+	}
+	
+	#toolbar-bottom-body{
+		padding-top: 4px;
+		background-color: #DFEAF2;
+	}
+	
+	#toolbar-bottom  table { 
+	  display:inline-block;
+	  vertical-align:top;
+	}
+	
+	/*
+	.TabMousePosition {  
+	  width: 250px;
+	
+	}
+	*/
+	#MousePosition { 
+		padding: 3px 5px 3px 10px;
+	}
+	.toolbarBottomSpacing {  
+		margin-left: 10px;
+	}
+	.toolbarBottomColor {
+		background-color: rgb(220,220,220);
+		background-color: rgba(55,55,55,0.2);
+	}
+	
+	#accordion {
+		padding: 0px 0px 0px 0px;
+		background-color: #5592A8;
+	}
+	
+	#treePanel-body {
+		padding: 5px;
+	}
+	
+	
+	
+	/*
+	.x-tree-icon-leaf {
+	*/
+	/*
+	    background-image: url('images/tree/leaf.png');
+	*/
+	}
+	/*
+	 * Masquer la feuille devant le nom des couches
+	*/
+	/*
+	.gx-tree-layer-icon {
+	    display: none;
+	*/
+	/*
+	}
+	*/
+	
+	.displayProjectionCombo .x-boundlist-item {
+		font-weight: italic;
+	    font-family: Arial;
+	    font-size: smaller;
+	}
+
+
+
+
+	.gm-style .gmnoscreen, .gmnoscreen {
+		    display:none  
+	}
+
+
+}
+/*
+ * Style pour l'impression
+ * */
+@media print {
+
+	@page {size: landscape;}
+
+	/* --- STYLES DE BASE --- */
+	
+	/* Page */
+	* {
+	    margin: 0;
+	    padding: 0;
+	    border: 0;
+	    font-family: sans-serif;
+	    font-size: 1em;
+	    font-weight: normal;
+	    font-style: normal;
+	    text-decoration: none;
+	}
+	html {
+	    font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
+	}
+
+	body {
+	      margin: 0;
+	      line-height: 1.4; /* À adapter au design. (4) */
+	      color: black;
+	      clear:left;
+	      background-color :#fff;
+	      
+	}
+	
+	
+	
+	
+	/* 
+	 * Haut de page 
+	 */
+	#mainHeader {
+		padding: 5px 5px 5px 5px;
+	    height: 100px;
+	    font: normal 11px sans-serif;
+/*
+	    color: #fff;
+*/
+	}
+	#mainHeader div {
+		display:inline-block;
+		vertical-align: top;
+	}
+	#mainHeader img {
+		margin: 5px;
+	}
+	#mainHeader h2 {
+		margin: 15px 0px 0px 10px;
+	    font-size: 25px;
+	    font-weight: bold;
+/*
+	    color: #fff;
+*/
+	}
+	#mainHeader h3 {
+		margin: 5px 0px 0px 200px;
+	/*
+		padding-left: 200px;
+	*/
+		font-size: 15px;
+	    font-style: italic;
+	}
+
+
+/* Les éléments qui ne seront pas affichés  */
+	/* Accordion */
+	/*
+		#accordion {display: none;}
+	*/
+	#treePanel {display: none;}
+	#toolbar-top  {display: none;}
+
+	/* Map */
+	div.olControlMousePosition{display: none;}
+	div.olControlPanZoomBar{display: none;}
+/*
+	.toolbar-top {display: none;}
+*/
+	#toolbar-bottom {display: none;}
+	/* Footer */
+	#footer {display: none;}
+	/* Divers */
+	#ficheInfoWms {display: none;}
+/*
+	#shortcutCombo {display: none;}
+	#treePanel {display: none;}
+	div.olControlPermalink {display: none;}
+	div.olControlMousePosition{display: none;}
+	div.olControlPanZoomBar{display: none;}
+	
+	#treePanel{display: none;}
+*/	
+	
+	/* Header */
+/*
+	#header {
+		margin :0;
+		padding: 0;
+		float: none !important;
+		height: 80px;
+	}
+*/
+/*
+	#mainHeader {
+	    font: normal 1em arial,tahoma,sans-serif;
+	}
+	#mainHeader h2 {
+	    font-size: 1.6em;
+	    padding-left: 20px;
+	}
+	#mainHeader h3 {
+		font-size: 1.1em;
+	    font-style: italic;
+	    padding-left: 25px;
+	}
+*/
+	
+	/* Map */
+	#map {
+		margin : 0;
+		padding: 0;
+		float: none !important;
+		display: block;
+		
+	}
+	.olMapViewport {
+		width: 100%;
+		height: 100%;
+	    border: 2px solid #000;
+	}
+	div.olControlAttribution {
+		float: left;
+		bottom: 0px;
+		right: 0px;
+		padding: 3px;
+	}
+
+	
+	/* Accordion */
+	#accordion {
+		margin-right: 5px;
+		padding: 0;
+		border: 0;
+		clear:none;
+		float: none !important;
+	}
+	#accordion-body {
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
+/*
+	#legendPanel {
+		border: 2px solid #000;
+	}
+*/
+	#legendPanel_header-body {
+		padding: 0;
+		margin: 0;
+		border: 2px double #000;
+	}
+/*
+ 	#header {
+	    width:100%;
+	    clear:none;
+	    height: 100px;
+	    position:relative;
+		left:20px;
+		top:200px;
+	}
+	#mainHeader {
+	    font: normal 1em arial,tahoma,sans-serif;
+	    padding: 0px;
+	}
+	#mainHeader h2 {
+	    font-size: 1.6em;
+	    padding-left: 20px;
+	}
+	#mainHeader h3 {
+		font-size: 1.1em;
+	    font-style: italic;
+	    padding-left: 25px;
+	}
+*/
+	
+	/* Map */
+/*
+	#map {
+		float: left;
+		clear: none;
+		width: 100%;
+		height: 100%;
+	}
+	#map-body {
+		border:0px;
+	}
+	.olMapViewport {
+		clear: none;
+		width: 100%;
+		height: 100%;
+	    border: 1px solid #fff;
+	}
+*/
+	
+
+	
+
+
+
+	
+	
+	.gm-style .gmnoprint, .gmnoprint {
+		    display:none  
+	}
+
+}

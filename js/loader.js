@@ -3,6 +3,8 @@ Ext.Loader.setConfig({
     disableCaching: false,
     paths: {
         GeoExt: "./lib/geoext2/src/GeoExt",
-        Ext: "http://cdn.sencha.com/ext/gpl/4.2.1/src"
+        //Ext: "./lib/extjs/src"
+        Ext: "http://cdn.sencha.com/ext/gpl/4.2.1/src" // Developpement
+        
     }
 });

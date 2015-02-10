@@ -1,5 +1,6 @@
 Ext.onReady(function() {
-    var defaultTheme = 'neptune';
+    //var defaultTheme = 'neptune';
+    var defaultTheme = 'crpc';
     function getQueryParam(name, queryString) {
         var match = RegExp(name + '=([^&]*)').exec(queryString || location.search);
         return match && decodeURIComponent(match[1]);

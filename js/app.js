@@ -41,7 +41,7 @@ Ext.require([
     'GeoExt.container.VectorLegend',
     'GeoExt.panel.Legend',
     'GeoExt.state.PermalinkProvider',
-    'GeoExt.data.ScaleStore'
+    'GeoExt.data.ScaleStoreCRPC'
 ]);
 
 Ext.application({
@@ -87,58 +87,52 @@ Ext.application({
    //infoControl.activate();        
         
     //
-    permalinkProvider = Ext.create('GeoExt.state.PermalinkProvider', {
-        encodeType: false
-    });
-    Ext.state.Manager.setProvider(permalinkProvider);
-        
+    //permalinkProvider = Ext.create('GeoExt.state.PermalinkProvider', {
+        //encodeType: false
+    //});
+    //Ext.state.Manager.setProvider(permalinkProvider);
         
     // Fonction pour créer le Popup
     function plusInfos(origine, data) {
-        //console.log('-------------');
-        //console.log(origine);
-        //console.log(data);
-        //console.log('-------------');
-        //var link = serverUrlGeosource + '?uuid=IGNF_BDCARTOr_3-1_HABILLAGE.xml'
-        //var link = serverUrlGeosource + data.dom.name;
-
         
         var win;
         var link = data;
         var link1 = data.split("_");
             link1 = link1[2].toUpperCase();
-//console.log(link1);
-
         
-        win = Ext.create('Ext.window.Window', {
-            title: 'Descriptif de la donnée',
+        win = Ext.create('Ext.window.Window',{
+			title: 'Descriptif de la donnée',
+            //baseCls: 'x-panel',
+            //cls: 'winPopup',
             header: {
                 titlePosition: 2,
                 titleAlign: 'center'
             },
+            modal: true,
+            //plain:true,
+            //maskOnDisable : true,
+            constrain: true,
             maximizable: false,
             resizable: false,
-            //unpinnable: false,
-            //anchored: false,
-            //modal: true,
             draggable: false,
-            style: 'padding:5px;',
-            bodyStyle: 'position: absolute; z-index: 999999;',
+            //style: 'padding:5px;',
+            //bodyStyle: 'position: absolute; z-index: 999999;',
             width: 720,
             height: 670,
             layout: {
-                type: 'border',
-                padding: 5
+                type: 'border'
+                //,
+                //padding: 0
             },
             items: [{
                 region: 'center',
                 xtype: 'tabpanel',
                 items: [{
                     title: 'Description',
-                    html: '<iframe width="690" height="570" src="./metadata/'+link+'.pdf"></iframe>'
+                    html: '<iframe width="711" height="595" src="./metadata/'+link+'.pdf"></iframe>'
                 }, {
                     title: 'Inspire',
-                    html: '<iframe width="695" height="645" src="'+serverUrlGeosource+'?uuid=IGNF_BDCARTOr_3-1_'+link1+'.xml"></iframe>'
+                    html: '<iframe width="711" height="595" src="'+serverUrlGeosource+'?uuid=IGNF_BDCARTOr_3-1_'+link1+'.xml"></iframe>'
                 }]
             }]
         });
@@ -147,11 +141,11 @@ Ext.application({
         //button.dom.disabled = true;
         if (win.isVisible()) {
             win.hide(this, function() {
-                //button.dom.disabled = false;
+                button.dom.disabled = false;
             });
         } else {
             win.show(this, function() {
-                //button.dom.disabled = false;
+                button.dom.disabled = false;
             });
         }
               
@@ -161,6 +155,15 @@ Ext.application({
     var menuBaseLayer = Ext.create('Ext.menu.Menu', {
         width: 250,
         items: [{
+	    text:'<img src="./icons/img_l_osm.png" alt=""/> OpenStreetMap',
+            xtype: 'menucheckitem',
+	    checked:true,
+            handler: function() {
+                map.setBaseLayer(l_osm);
+            },
+            group:'rp-group',
+            scope:this
+        },{
             text:'<img src="./icons/img_l_gmap.png" alt=""/> Google Plan',
             xtype: 'menucheckitem',
             handler: function() {
@@ -177,16 +180,8 @@ Ext.application({
             group:'rp-group',
             scope:this
         },{
-            text:'<img src="./icons/img_l_osm.png" alt=""/> OpenStreetMap',
-            xtype: 'menucheckitem',
-            handler: function() {
-                map.setBaseLayer(l_osm);
-            },
-            group:'rp-group',
-            scope:this
-        },{
             text:'<img src="./icons/img_l_blank.png" alt=""/> Fond blanc',
-            checked:true,
+	    xtype: 'menucheckitem',
             handler: function() {
                 map.setBaseLayer(l_fond_vierge);
             },
@@ -205,7 +200,7 @@ Ext.application({
         },
         map: map,
         iconCls: "zoomfull",
-        tooltip: "Retour à la carte initiale"
+        tooltip: "Recentrer la carte"
     })));
     //actions["max_extent"] = action;
     //toolbarItems.push(Ext.create('Ext.button.Button', action));
@@ -223,46 +218,39 @@ Ext.application({
     
     // Barre d'outils : Afficher infos WMS    
     toolbarItems.push(Ext.create('Ext.button.Button', Ext.create('GeoExt.Action', {
-        iconCls: 'service-wms',
+        iconCls: 'serviceWms',
         tooltip :'Information WMS',
         text: 'WMS',
-        handler: function() {
-            var txt_wms = 'Utilisation des services WMS';
-            txt_wms += '<hr>';
-            txt_wms += 'Comment accéder aux données via les services WMS?';
-            txt_wms += '<br>';
-            txt_wms += '<br>';
-            txt_wms += 'Adresse du serveur WMS<br>';
-            txt_wms += 'http://10.0.0.208/cgi-bin/wms_bdcarto_equipement?';
-            
-            
-            //popup_help = new GeoExt.Popup({
+        handler: function() {            
+			//
             win_wms = Ext.create('Ext.window.Window', {
                 title: 'Information WMS',
+                baseCls: 'x-panel',
+                cls: 'winPopup',
                 header: {
                     titlePosition: 2,
                     titleAlign: 'center'
                 },
+                modal: true,
                 maximizable: false,
                 resizable: false,
-                style: 'padding:5px;',
-                bodyStyle: 'position: absolute; z-index: 999999;',
+                draggable: false,
                 width: 720,
-                height: 670,
+                height: 770,
+		autoScroll: true,
                 layout: {
                     type: 'border',
-                    padding: 5
+                    padding: 4
                 },
                 items: [{
                     region: 'center',
-                    //xtype: 'tabpanel',
                     items: [{
                         // LTR even when example is RTL so that the code can be read
                         rtl: true,
-                        //title: 'Description',
-                        html: txt_wms
-                        //contentEl: 'infosWMS'
-                        //html: '<iframe width="690" height="570" src="./metadata/bd_carto_equipement.pdf"></iframe>'
+                        tag: 'div',
+                        id: 'informationWms',
+                        //cls: 'win-popup',
+                        contentEl: 'ficheInfoWms'
                     }]
                 }]
             });
@@ -270,21 +258,100 @@ Ext.application({
              //On affiche/cache la fenetre
             if (win_wms.isVisible()) {
                 win_wms.hide(this, function() {
-                    //button.dom.disabled = false;
+                    button.dom.disabled = false;
                 });
             } else {
                 win_wms.show(this, function() {
-                    //button.dom.disabled = false;
+                    button.dom.disabled = false;
                 });
             }
         }
     })));     
+    
+    // Ajout de la barre de séparation
+    //toolbarItems.push('-');
+    
+    //action = Ext.create('GeoExt.Action', {
+		//text: "draw poly",
+		//control: new OpenLayers.Control.DrawFeature(vector, OpenLayers.Handler.Polygon),
+		//map: map,
+		// button options
+		//toggleGroup: "draw",
+		//allowDepress: false,
+		//tooltip: "draw polygon",
+		// check item options
+		//group: "draw"
+	//});
+	//actions["draw_poly"] = action;
+	//toolbarItems.push(Ext.create('Ext.button.Button', action));
+	
+	//action = Ext.create('GeoExt.Action', {
+		//text: "draw line",
+		//control: new OpenLayers.Control.DrawFeature(vector, OpenLayers.Handler.Path),
+		//map: map,
+		// button options
+		//toggleGroup: "draw",
+		//allowDepress: false,
+		//tooltip: "draw line",
+		// check item options
+		//group: "draw"
+	//});
+	//actions["draw_line"] = action;
+	//toolbarItems.push(Ext.create('Ext.button.Button', action));
+	//toolbarItems.push("-");
+	
+	// SelectFeature control, a "toggle" control
+	//action = Ext.create('GeoExt.Action', {
+		//text: "select",
+		//control: new OpenLayers.Control.SelectFeature(vector, {
+			//type: OpenLayers.Control.TYPE_TOGGLE,
+			//hover: true
+		//}),
+		//map: map,
+		// button options
+		//enableToggle: true,
+		//tooltip: "select feature",
+		// check item options
+		//group: "draw"
+	//});
+	//actions["select"] = action;
+	//toolbarItems.push(Ext.create('Ext.button.Button', action));
+	//toolbarItems.push("-");
+    
+    // Reuse the GeoExt.Action objects created above
+	// as menu items
+	//toolbarItems.push({
+		//text: "Outils",
+		//menu: Ext.create('Ext.menu.Menu', {
+			//items: [
+				// Draw poly
+				//Ext.create('Ext.menu.CheckItem', actions["draw_poly"]),
+				// Draw line
+				//Ext.create('Ext.menu.CheckItem', actions["draw_line"]),
+				// Select control
+				//Ext.create('Ext.menu.CheckItem', actions["select"])
+			//]
+		//})
+	//});
            
     // On position les éléments de la barre à droite
     toolbarItems.push('->');
+    
+    //toolbarItems.push(Ext.create('Ext.button.Button', Ext.create('GeoExt.Action', {
+		//id: 'permalien',
+		//iconCls: 'permalink',
+		//tooltip :'Permalien'
+		//,
+		//handler: function() {           
+			//document.location.href = permalink;
+			//var message ='Cliquez sur le lien avec le bouton droit de la souris et choisissez, <b>"copier l\'adresse du lien"</b>.' +
+						//'<br/><br/><br/>' +
+						//'<a href=' + permalink + '>Lien permanent</a>';
+		//}
+    //})));
         
     // Ajout de la barre de séparation
-    toolbarItems.push('-');
+    //toolbarItems.push('-');
     
     // Afficher le bouton impression
     toolbarItems.push(Ext.create('Ext.button.Button', Ext.create('GeoExt.Action', {
@@ -297,35 +364,34 @@ Ext.application({
     })));
     
     // Selection du niveau d'echelle
-    var scaleStore = Ext.create("GeoExt.data.ScaleStore", {map: map});
+    var scaleStore = Ext.create("GeoExt.data.ScaleStoreCRPC", {map: map});
     
     var zoomSelector = Ext.create("Ext.form.ComboBox", {
         store: scaleStore,
-        id: 'zoomSelector',
-        //bodyStyle: 'marging: -20px;',
+        cls: 'toolbarBottomColor toolbarBottomSpacing',
         fieldLabel: "Echelle ",
-        emptyText: "Niveau zoom",
-        listConfig: {
-            getInnerTpl: function() {
-                //console.log({scale:round(0)});
-                return "1: {scale:round(0)}";
-            }
-        },
+        width: 230,
+        labelWidth: 55,
+	    queryMode: 'local',
+	    value: 'régionale',
+        tpl: Ext.create('Ext.XTemplate',
+	        '<tpl for=".">',
+	            '<div data-qtip="≈ 1:{scaleNum} " class="x-boundlist-item">{scaleName}</div>',
+	        '</tpl>'
+	    ),
         editable: false,
-        triggerAction: 'all', // needed so that the combo box doesn't filter by its current content
-        queryMode: 'local' // keep the combo box from forcing a lot of unneeded data refreshes
+        triggerAction: 'all', 
+        queryMode: 'local'
     });
 
     zoomSelector.on('select', 
         function(combo, record, index) {
-            //console.log(record[0].get("level"));
             map.zoomTo(record[0].get("level"));
         },
         this
     );
     
-
-
+		//
         map.events.register('zoomend', this, function() {
             // On appel la fonction 
             //zoomChangeImg();
@@ -337,12 +403,64 @@ Ext.application({
 
             if (scale.length > 0) {
                 scale = scale.items[0];
-                zoomSelector.setValue("1 : " + parseInt(scale.data.scale));
+                //zoomSelector.setValue("1 : " + parseInt(scale.data.scale));
+                zoomSelector.setValue(scale.data.scaleName);
             } else {
                 if (!zoomSelector.rendered) return;
                 zoomSelector.clearValue();
             }
-        });
+        });      
+        
+        // Donnees pour la liste des projections 
+        var storeCombo = Ext.create('Ext.data.Store', {
+		    fields : ['srsCode', 'projName', 'projTitle'],
+	        data : [
+				{"srsCode": "EPSG:4326", "projName": "epsg4326", "projTitle": "WGS 84"},
+				{"srsCode": "EPSG:3857", "projName": "epsg3857", "projTitle": "EPSG 3857"},
+				{"srsCode": "EPSG:2154", "projName": "epsg2154", "projTitle": "RGF93/Lambert 93"}
+	        ]
+		});
+        
+        displayProjectionCombo = new Ext.form.ComboBox({
+			name: 'displayProjectionCombo',
+		    cls: 'toolbarBottomColor toolbarBottomSpacing',
+		    //fieldLabel: 'Coordonnées en ',
+		    fieldLabel: 'Projection en ',
+		    labelWidth: 105,
+		    width: 270,
+		    editable: false,
+		    forceSelection: true,
+		    valueField: 'projName',
+		    displayField: 'projTitle',
+		    value: 'epsg4326',
+		    store: storeCombo,
+			// Template for the dropdown menu.
+		    // Note the use of "x-boundlist-item" class,
+		    // this is required to make the items selectable.
+			tpl: Ext.create('Ext.XTemplate',
+		        '<tpl for=".">',
+		            '<div data-qtip="{projTitle} - {srsCode}" class="x-boundlist-item">{projTitle}</div>',
+		        '</tpl>'
+		    ),
+		    // template for the content inside text field
+		    displayTpl: Ext.create('Ext.XTemplate',
+		        '<tpl for=".">',
+		            '{projTitle}',
+		        '</tpl>'
+		    ),
+		    listeners: {
+		        'select': function(comp, record, index) {
+		            map.displayProjection = new OpenLayers.Projection(record[0].data.srsCode);
+		            
+		            for (var i = 0; i < map.controls.length; i++) {
+						var control = map.controls[i];
+						if (control.displayProjection) {
+							control.displayProjection = map.displayProjection;
+						}
+					}		           
+		        }
+		    }
+		});
 
         // create a map panel with some layers that we will show in our layer tree
         // below.
@@ -355,93 +473,32 @@ Ext.application({
            map: map,
            prettyStateKeys: true, // for pretty permalinks
            dockedItems: [{
+			   id: 'toolbar-top',
                xtype: 'toolbar',
-               id: 'toolbar-top',
-               height: 36,
+               //height: 36,
                dock: 'top',
                items: toolbarItems
-            //}, {
-               //xtype: 'toolbar',
-               //id: 'toolbar-bottom',
-               //height: 36,
-               //dock: 'bottom',
-               //items: toolbarItems
+            }, {
+               id: 'toolbar-bottom',
+               //bodyStyle:'background-color: #DFEAF2;',
+               dock: 'bottom',
+               //height: 35,
+               items: [
+	               zoomSelector,
+	               displayProjectionCombo
+               ]
             }]
-            //,
-            //bbar: [
-            //{ 
-                //xtype: 'textfiled',
-                //id: 'attribution1'
-                //text: mousePositionItem.getText()
-                //text: "<div id='attribution1'></div>"
-            //}
-            //]
-            bbar: {
-                id: 'toolbar-bottom',
-                bodyStyle:'background-color: #ececec;',
-                items : [
-                    zoomSelector,
-                    {
-                        text: 'permalien',
-                        id: 'permalien',
-                        iconCls: 'permalink',
-                        tooltip :'Permalien'
-                        ,
-                        handler: function() {
-                            win_permalink = Ext.create('Ext.window.Window', {
-                                title: 'Permalien',
-                                header: {
-                                    titlePosition: 2,
-                                    titleAlign: 'center'
-                                },
-                                maximizable: false,
-                                resizable: false,
-                                style: 'padding:1px;',
-                                autoscroll: true,
-                                bodyStyle: 'position: absolute; z-index: 999999;',
-                                width: 600,
-                                height: 320,
-                                layout: {
-                                    type: 'border',
-                                    padding: 0
-                                },
-                                items: [{
-                                    region: 'center',
-                                    items: [{
-                                        rtl: true,
-                                        html: "<a href=" + permalink + ">" + permalink + "</a>"
-                                    }]
-                                }]
-                            });
-                    
-                            if (win_permalink.isVisible()) {
-                                win_permalink.hide(this, function() {
-                                });
-                            } else {
-                                win_permalink.show(this, function() {
-                                });
-                            }
-                        }
-                    }
-                ]
-            }
        }); 
        
        // update link when state chnages
-        var onStatechange = function(provider) {
-            permalink = provider.getLink();
-            //Ext.get("permalink").update("<a href=" + permalink + ">" + permalink + "</a>");
-            //alert(l);
-            return permalink;
-        };
-        permalinkProvider.on({
-            statechange: onStatechange
-        });
+        //var onStatechange = function(provider) {
+            //permalink = provider.getLink();
+            //return permalink;
+        //};
         //permalinkProvider.on({
-            //statechanged: function(provider, name, value) {
-                //alert(provider.getLink());
-            //}
+            //statechange: onStatechange
         //});
+
 
 
        
@@ -451,9 +508,10 @@ Ext.application({
         //layerRec0.set("legendURL", "http://ows.terrestris.de/osm/service?FORMAT=image%2Fgif&TRANSPARENT=true&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&EXCEPTIONS=application%2Fvnd.ogc.se_xml&LAYER=OSM-WMS");
         
         legendPanel = Ext.create('GeoExt.panel.Legend', {
-            defaults: {
-                style: 'padding:5px'
-            },
+			id: 'legendPanel',
+            //defaults: {
+                //style: 'padding:5px'
+            //},
             autoScroll: true,
             border: true,
             title: "Légende"
@@ -476,7 +534,7 @@ Ext.application({
                 
                 var nodes_digue = img_bdcarto_digue.dom;
                 var src_img_digue = nodes_digue.attributes[0];
-                console.log(src_img_digue);
+                //console.log(src_img_digue);
                 
                 //if (niveau_zoom > 3 && src_img_digue.value == "./icons/nap.png") {
                 if (niveau_zoom > 3) {
@@ -495,15 +553,17 @@ Ext.application({
         var clickListenerNode = function (node,event){
             // Appel de la fonction qui change les images
             zoomChangeImg();
-            
-            // The node argument represents the node that
-            // was clicked on within your TreePanel  
-            var id = event.id;
-            var name = event.name; 
 
-            // Appel la fonction qui ouvre le popup
-            plusInfos(event.name, event.id);
+            // Test si le click provient de l'image description
+			if(event.id !== ""){
+	            // The node argument represents the node that
+	            // was clicked on within your TreePanel  
+	            var id = event.id;
+	            var name = event.name; 
 
+	            // Appel la fonction qui ouvre le popup
+	            plusInfos(name, id);
+			}
         };
 
         // create the tree with the configuration from above
@@ -521,8 +581,8 @@ Ext.application({
         });
     
         treePanel = Ext.create('GeoExt.tree.Panel', {
+			id: 'treePanel',
             border: true,
-            id: 'treePanel',
             title: "Couches de données",
             listeners: {
                 click: {
@@ -538,27 +598,31 @@ Ext.application({
 
         //
         var accordion = new Ext.Panel({
-           border: true,
-            region:'west',
-            bodyStyle: ' background: none repeat scroll 0% 0% #157FCC; padding: 3 0 0 0; ',
+	    id: 'accordion',
+	    //title: 'Données',
+            border: false,
+            region: 'west',
+	    //hideBorders: true,
+	    //collapsible: true,
+	    //collapseMode: 'mini',
+	    //hideCollapseTool: false,
+	    //HideCollapseTool:'true',
+	    split: true,
+	    useSplitTips: true,
+	    splitTip            : 'Cliquer et glisser pour redimensionner le panneau.',
+	    //collapsibleSplitTip:  'Cliquer et glisser pour redimensionner le panneau.',
+	    //splitterResize: false,
+	    minWidth: 330,
+	    maxWidth: 550,
+            //cls: 'accordion',
+            //bodyStyle: ' background: none repeat scroll 0% 0% #5592A8; ',
             width: 330,
             layout:'accordion',
             items: [treePanel, legendPanel]
         });
              
              
-//var txt_footer = '<div>';
-var txt_footer = '  <div class="version">Version 0.30</div>';
-txt_footer += '  <div class="xiti">';
-txt_footer += '  </div>';
-txt_footer += '  <div class="w3c">';
-//txt_footer += '      <p>';
-txt_footer += '          <a href="http://validator.w3.org/check?uri=referer"><img src="./img/valid-xhtml10.png" alt="Valid XHTML 1.0 Transitional" /></a>';
-//txt_footer += '      </p>';
-txt_footer += '  </div>';
-txt_footer += '  <div class="copyright-txt"><a href="http://www.iaat.org">Région Poitou-Charentes 2014</a> - </div>';
-txt_footer += '  <div class="copyright"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.fr"><img alt="Licence Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a></div>';
-//txt_footer += '</div>';
+
 
         // Application final
         //mainPanel = Ext.create('Ext.panel.Panel', {
@@ -577,48 +641,70 @@ txt_footer += '  <div class="copyright"><a rel="license" href="http://creativeco
                 //}
             //]
         //});
-        Ext.create('Ext.container.Viewport', {
-            //layout: 'fit',
-            //items: [
-                //mappanel
-            //]
+        mainPanel = Ext.create('Ext.container.Viewport', {
             layout: 'border',
             //width: 930,
             //height: 700,
             //hideBorders: true,
-            items: [{
-                region: 'north',
-                id: 'headter',
-                height: 50,
-                //style: 'border-color: #1c3d70;',
-                bodyStyle:'background-color: #157FCC;',
-                html: 'Visualiseur cartographique'
-                //contentEl: 'footer'
-            },
+            //renderTo: map,
+            items: [
+            //{
+                //region: 'north',
+                //id: 'header'
+            //},
             mapPanel,
             accordion,
             //treePanel,
             //legendPanel,
             {
                 region: 'south',
-                id: 'footer',
-                height: 30,
-                bodyStyle:'background-color: #157FCC;',
-                html: txt_footer
-                //contentEl: 'footer'
+                id: 'footer'
+                //,
+                //height: 30,
+                //bodyStyle:'background-color: #157FCC;'
             }]
         });
         
         
         // On envoi l'application, dans l'element body
-        //mainPanel.render("map");
+        //mainPanel.render("map1");
         
         //
         map.setCenter(center,2);
         
+	    // Permet de charge les composents HTML dans l'application
+	    
+	    // Header
+	    //var contentElHeader = Ext.create('Ext.Component', {
+	        //contentEl: 'mainHeader',
+	        //renderTo: Ext.getBody()
+	    //});
+	    //mainPanel.getComponent('header').add(contentElHeader);
+	    // Footer
+	    var contentElFooter = Ext.create('Ext.Component', {
+	        contentEl: 'mainFooter',
+	        renderTo: Ext.getBody()
+	    });
+	    mainPanel.getComponent('footer').add(contentElFooter);
+		
 
-        
+	    var row = Ext.select('#toolbar-bottom-innerCt').first();
+	    row.createChild('<table class="x-field TabMousePosition toolbarBottomColor x-table-plain x-form-item x-form-type-text x-field-default x-autocontainer-form-item"><tr><td><div id="MousePosition">&nbsp;</div><td></tr></table>');
+		
+	    //Add the MousePosition control to show coordinates
+	    map.addControl(new OpenLayers.Control.MousePosition({
+			div: document.getElementById("MousePosition") ,
+			prefix: "XY : ", 
+            numdigits: 5,
+            formatOutput: function(lonLat) {
+               var markup = 'X = '+lonLat.lat.toFixed(parseInt(this.numdigits));
+               markup += ', ';
+               markup += 'Y = '+lonLat.lon.toFixed(parseInt(this.numdigits));
+               return markup
+            }
+		}));
+		    
+    
     }
 
 });
-
